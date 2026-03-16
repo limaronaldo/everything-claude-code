@@ -9,7 +9,7 @@ This command invokes the **rust-build-resolver** agent to incrementally fix Rust
 ## What This Command Does
 
 1. **Run Diagnostics**: Execute `cargo check`, `cargo clippy`, `cargo fmt --check`
-2. **Parse Errors**: Group by file and sort by severity
+2. **Parse Errors**: Identify error codes and affected files
 3. **Fix Incrementally**: One error at a time
 4. **Verify Each Fix**: Re-run `cargo check` after each change
 5. **Report Summary**: Show what was fixed and what remains
@@ -71,9 +71,8 @@ Error: E0502 — cannot borrow `map` as mutable because also borrowed as immutab
 Cause: Immutable borrow still active during mutable insert
 
 ```rust
-// Changed
-let value = map.get("key").cloned();
-if value.is_none() {
+// Changed: restructured to end immutable borrow before mutable access
+if !map.contains_key("key") {
     map.insert("key".into(), default);
 }
 ```
