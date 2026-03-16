@@ -8,9 +8,9 @@ This command invokes the **rust-reviewer** agent for comprehensive Rust-specific
 
 ## What This Command Does
 
-1. **Verify Build**: Run `cargo check` — stop if it fails
+1. **Verify Automated Checks**: Run `cargo check`, `cargo clippy -- -D warnings`, `cargo fmt --check`, and `cargo test` — stop if any fail
 2. **Identify Rust Changes**: Find modified `.rs` files via `git diff HEAD~1` (or `git diff main...HEAD` for PRs)
-3. **Run Static Analysis**: Execute `cargo clippy -- -D warnings`, `cargo fmt --check`, and `cargo test`
+3. **Run Security Audit**: Execute `cargo audit` if available
 4. **Security Scan**: Check for unsafe usage, command injection, hardcoded secrets
 5. **Ownership Review**: Analyze unnecessary clones, lifetime issues, borrowing patterns
 6. **Generate Report**: Categorize issues by severity
