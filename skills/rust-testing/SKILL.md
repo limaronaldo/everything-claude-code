@@ -219,7 +219,7 @@ async fn handles_timeout() {
 ### Parameterized Tests with `rstest`
 
 ```rust
-use rstest::rstest;
+use rstest::{rstest, fixture};
 
 #[rstest]
 #[case("hello", 5)]
@@ -317,7 +317,7 @@ proptest! {
 ### Trait-Based Mocking
 
 ```rust
-use mockall::automock;
+use mockall::{automock, predicate::eq};
 
 #[automock]
 trait UserRepository {

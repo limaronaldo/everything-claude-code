@@ -105,7 +105,7 @@ cargo update -p specific_crate        # Update one dependency
 ## Edition and MSRV Issues
 
 ```bash
-# Check edition in Cargo.toml (2021 is current standard)
+# Check edition in Cargo.toml (2024 is the current default for new projects)
 grep "edition" Cargo.toml
 
 # Check minimum supported Rust version
@@ -113,7 +113,7 @@ rustc --version
 grep "rust-version" Cargo.toml
 
 # Common fix: update edition for new syntax
-# In Cargo.toml: edition = "2021"
+# In Cargo.toml: edition = "2024"
 ```
 
 ## Key Principles

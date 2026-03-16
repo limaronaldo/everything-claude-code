@@ -295,7 +295,7 @@ let counter = Arc::new(Mutex::new(0));
 let handles: Vec<_> = (0..10).map(|_| {
     let counter = Arc::clone(&counter);
     std::thread::spawn(move || {
-        let mut num = counter.lock().unwrap();
+        let mut num = counter.lock().expect("mutex poisoned");
         *num += 1;
     })
 }).collect();
@@ -310,7 +310,7 @@ for handle in handles {
 ```rust
 use std::sync::mpsc;
 
-let (tx, rx) = mpsc::channel();
+let (tx, rx) = mpsc::sync_channel(16); // Bounded channel with backpressure
 
 for i in 0..5 {
     let tx = tx.clone();
@@ -363,11 +363,12 @@ async fn fetch_all(urls: Vec<String>) -> Vec<Result<String>> {
 ### When Unsafe Is Acceptable
 
 ```rust
-// Acceptable: FFI boundary with documented invariants
+// Acceptable: FFI boundary with documented invariants (Rust 2024+)
 /// # Safety
 /// `ptr` must be a valid, aligned pointer to an initialized `Widget`.
 unsafe fn widget_from_raw(ptr: *const Widget) -> &Widget {
-    &*ptr
+    // SAFETY: caller guarantees ptr is valid and aligned
+    unsafe { &*ptr }
 }
 
 // Acceptable: Performance-critical path with proof of correctness
