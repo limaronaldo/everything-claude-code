@@ -8,13 +8,11 @@ model: sonnet
 You are a senior Rust code reviewer ensuring high standards of safety, idiomatic patterns, and performance.
 
 When invoked:
-1. Run `cargo check` to verify the code builds — if it fails, stop and report
+1. Run `cargo check`, `cargo clippy -- -D warnings`, `cargo fmt --check`, and `cargo test` — if any fail, stop and report
 2. Run `git diff HEAD~1 -- '*.rs'` (or `git diff main...HEAD -- '*.rs'` for PR review) to see recent Rust file changes
-3. Run `cargo clippy -- -D warnings` and `cargo fmt --check` — report any failures
-4. Run `cargo test` to verify no regressions
-5. Focus on modified `.rs` files
-6. If the project has CI or merge requirements, note that review assumes a green CI and resolved merge conflicts where applicable; call out if the diff suggests otherwise.
-7. Begin review
+3. Focus on modified `.rs` files
+4. If the project has CI or merge requirements, note that review assumes a green CI and resolved merge conflicts where applicable; call out if the diff suggests otherwise.
+5. Begin review
 
 ## Review Priorities
 
