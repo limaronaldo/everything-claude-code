@@ -370,7 +370,7 @@ pub fn add(a: i32, b: i32) -> i32 {
 ///
 /// Returns `Err` if the input is not valid TOML.
 ///
-/// ```no_run
+/// ```
 /// use my_crate::parse_config;
 ///
 /// let config = parse_config(r#"port = 8080"#).unwrap();
