@@ -80,8 +80,8 @@ When invoked:
 cargo clippy -- -D warnings
 cargo fmt --check
 cargo test
-command -v cargo-audit >/dev/null && cargo audit || echo "cargo-audit not installed"
-command -v cargo-deny >/dev/null && cargo deny check || echo "cargo-deny not installed"
+if command -v cargo-audit >/dev/null; then cargo audit; else echo "cargo-audit not installed"; fi
+if command -v cargo-deny >/dev/null; then cargo deny check; else echo "cargo-deny not installed"; fi
 cargo build --release 2>&1 | head -50
 ```
 

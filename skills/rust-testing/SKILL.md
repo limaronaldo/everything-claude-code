@@ -40,12 +40,12 @@ mod tests {
     fn test_add() { assert_eq!(add(2, 3), 5); }
 }
 // cargo test → panics at 'not yet implemented'
+```
 
-// GREEN: Implement minimal code
+```rust
+// GREEN: Replace todo!() with minimal implementation
 pub fn add(a: i32, b: i32) -> i32 { a + b }
-// cargo test → PASS
-
-// REFACTOR: Improve while keeping tests green
+// cargo test → PASS, then REFACTOR while keeping tests green
 ```
 
 ## Unit Tests

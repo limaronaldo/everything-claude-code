@@ -26,7 +26,7 @@ cargo check 2>&1
 cargo clippy -- -D warnings 2>&1
 cargo fmt --check 2>&1
 cargo tree --duplicates 2>/dev/null || echo "no duplicates"
-command -v cargo-audit >/dev/null && cargo audit || echo "cargo-audit not installed"
+if command -v cargo-audit >/dev/null; then cargo audit; else echo "cargo-audit not installed"; fi
 ```
 
 ## Resolution Workflow
@@ -112,8 +112,8 @@ grep "edition" Cargo.toml
 rustc --version
 grep "rust-version" Cargo.toml
 
-# Common fix: update edition for new syntax
-# In Cargo.toml: edition = "2024"
+# Common fix: update edition for new syntax (check rust-version first!)
+# In Cargo.toml: edition = "2024"  # Requires rustc 1.85+
 ```
 
 ## Key Principles
