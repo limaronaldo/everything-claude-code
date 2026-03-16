@@ -370,15 +370,17 @@ pub fn add(a: i32, b: i32) -> i32 {
 ///
 /// Returns `Err` if the input is not valid TOML.
 ///
-/// ```
+/// ```no_run
 /// use my_crate::parse_config;
 ///
 /// let config = parse_config(r#"port = 8080"#).unwrap();
 /// assert_eq!(config.port, 8080);
 /// ```
 ///
-/// ```should_panic
-/// my_crate::parse_config("}{invalid").unwrap();
+/// ```no_run
+/// use my_crate::parse_config;
+///
+/// assert!(parse_config("}{invalid").is_err());
 /// ```
 pub fn parse_config(input: &str) -> Result<Config, ParseError> {
     todo!()
@@ -442,14 +444,12 @@ cargo llvm-cov --fail-under-lines 80  # Fail if below threshold
 ```bash
 cargo test                        # Run all tests
 cargo test -- --nocapture         # Show println output
-cargo test test_add               # Run specific test
-cargo test user::tests            # Run tests matching pattern
+cargo test test_name              # Run tests matching pattern
 cargo test --lib                  # Unit tests only
 cargo test --test api_test        # Integration tests only
 cargo test --doc                  # Doc tests only
 cargo test --no-fail-fast         # Don't stop on first failure
 cargo test -- --ignored           # Run ignored tests
-cargo bench                       # Run benchmarks
 ```
 
 ## Best Practices
