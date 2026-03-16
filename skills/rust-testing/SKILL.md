@@ -55,7 +55,9 @@ mod tests {
 ```rust
 // GREEN: Replace todo!() with minimal implementation
 pub fn add(a: i32, b: i32) -> i32 { a + b }
-// cargo test → PASS, then REFACTOR while keeping tests green
+// cargo test → PASS
+
+// REFACTOR: Improve while keeping tests green
 ```
 
 ## Unit Tests
